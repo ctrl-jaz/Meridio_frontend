@@ -3,7 +3,7 @@
         <img src="../assets/Meridio-logo-website.png" id="img" align="center" >
     <v-row justify="center">
     <v-col cols="12" lg="6" md="8" sm="10" >
-      <v-card ref="form">
+      <v-card ref="form" rounded="xl">
 
         <v-card-text>
             <H1>We sent a Code to your email</H1>
@@ -37,7 +37,8 @@
 export default {
   data() {
     return {
-      code: ''
+      code: '',
+      // visible:false
     }
   },
   methods: {
@@ -52,8 +53,9 @@ export default {
   background-color: #F5DBCB;
 }
 #img{
-    width:400px;
-    height:160px ;
-    justify-self:center;
+    width:500px;
+    height:100px ;
+    margin:auto;
+    padding: auto;
 }
 </style>

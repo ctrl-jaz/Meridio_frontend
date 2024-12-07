@@ -29,9 +29,7 @@
     </v-col>
   </v-row>
 </template>
-<script setup>
-
-</script> -->
+-->
 <template>
   <v-row>
     <v-col cols ='12'>
@@ -39,7 +37,7 @@
         <v-card elevation="0">
           <v-row justify="center">
             <div style="overflow: hidden">
-              <video poster="/tap-poster-login.jpg" src="/water-loginPG.mp4" height=auto muted loop autoplay style="
+              <video poster="/Poster_img.png" src="/water-loginPG.mp4" height=auto muted loop autoplay style="
                 margin-top: -10.5%;
                 margin-bottom: 1.5%;
                 margin-left: -900px;
@@ -52,10 +50,10 @@
       <div class="hidden-sm-and-down" style="margin-top: -80px">
           <v-card elevation="0">
             <v-row justify="center">
-              <video poster="/tap-poster-login.jpg" width="100%" src="/water-loginPG.mp4" muted loop autoplay
+              <video poster="/Poster_img.png" width="100%" src="/water-loginPG.mp4" muted loop autoplay
                 style="z-index: 1">
               </video>
-              <v-overlay scroll-strategy="none" persistent  v-model="overlay"  style="z-index: 1;">
+              <v-overlay scroll-strategy="block" persistent  v-model="overlay"  style="z-index: 1;">
                 <v-row no-gutters>
                   <v-col cols="12" xs="0" md="8">
                       <v-container>
@@ -71,22 +69,23 @@
                   </v-col> 
   
                   <v-col cols="12" xs="2" md="4">
-                    <v-card ref="form" rounded="xl" width="600" height="auto">
-
+                    <v-card ref="form" rounded="xl" width="600" height="630">
           <v-card-text align="center">
-            <v-text-field placeholder="your name" width="460" height="5" rounded="xl" required></v-text-field>
-            <v-text-field type="email" placeholder="youremail@example.com" width="460" height="5" rounded="xl" :rules="emailRules" required ></v-text-field>
-            <v-text-field type="tel" placeholder="000000000" width="460" height="5" rounded="xl" required ></v-text-field>
+            <v-text-field v-model="Name" max-height="200" density="compact" placeholder="Name/Organization Name" rounded="xl" required></v-text-field>
+            <v-text-field type="email" v-model="email" density="compact" placeholder="youremail@example.com" rounded="xl" :rules="emailRules" required ></v-text-field>
+            <v-text-field  v-model="country" density="compact" placeholder="Norway" rounded="xl" required ></v-text-field>
+            <v-text-field type="tel" v-model="phone_number" density="compact" placeholder="000000000" rounded="xl" required ></v-text-field>
             <v-text-field
+            v-model="password"
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
             :type="visible ? 'text' : 'password'"
             @click:append-inner="visible = !visible"
-            width="460" height="5" 
             rounded="xl"
+             density="compact"
             required
             ></v-text-field>
           </v-card-text>
-                      <v-btn class="mb-5" color="" size="large" block  @click="register()" > Sign up </v-btn>
+                      <v-btn class="mb-5" color="" size="large" block  @click="register()" href="/home"> Sign up </v-btn>
   
                       <v-card-text class="text-center">
                         Already have an account?<a class="text-darkgreen text-decoration-none" href="/"  >
@@ -117,15 +116,16 @@
   const register_info = ref({
     name:null,
     email:null,
-    country:null,
     phone_number:null,
     password: null,
   })
   
   function register(){
     axios
+      .post('http://127.0.0.1:8000/api/register', register_info.value)
       .then((response) => {
         // store token to be used through out the application  
+        userStore.register(response.data)
         //redirect to home
         router.push({ name:   "home" })
       }).catch(error => {

@@ -1,5 +1,5 @@
-<template>
-  <v-main id="welcome">
+<template id="welcome">
+  <!-- <v-main id="welcome"> -->
       <v-carousel>
         <v-carousel-item src="/photo_1_Meridio.jpg" cover></v-carousel-item>
   
@@ -14,7 +14,7 @@
         ></v-carousel-item>
       </v-carousel>
 
-      <template>
+      <!-- <template> -->
         <v-container fluid>
         <v-card>
         
@@ -22,8 +22,8 @@
       
       </v-card>
     </v-container>
-      </template>
-    </v-main>
+      <!-- </template> -->
+    <!-- </v-main> -->
   </template>
   <style>
     #welcome{

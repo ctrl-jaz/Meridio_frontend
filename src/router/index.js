@@ -6,7 +6,7 @@ import AboutUs from '@/components/aboutUs.vue'
 import HowToJoin from '@/components/HowToJoin.vue'
 import Contact from '@/components/ContactUs.vue'
 import Donation from '@/components/DonationsPage.vue'
-import forgotpassword from '@/components/forgotpassword.vue'
+import forgotpassword from '@/components/forgotPassword.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),

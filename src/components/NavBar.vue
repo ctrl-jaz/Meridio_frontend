@@ -5,40 +5,30 @@
           prominent>
           <v-app-bar-nav-icon variant="text" @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
   
-          <img src="../assets/Meridio-logo-website.png" a ref="/home"  id="logo"/>
+         <img src="../assets/Meridio-logo-website.png" a ref="/home"  id="logo">
   
           <v-spacer></v-spacer>
   
-          <!-- <template v-if="$vuetify.display.mdAndUp">
-            <v-btn icon="mdi-magnify" variant="text"></v-btn>
-          </template> -->
-          
-            <input type="text" v-model="input" placeholder="Search projects..." class="searchbar" icon="mdi-magnify" />
-            <ul v-if="showDropdown" class="dropdown-menu">
-            <div class="item project" v-for="project in filteredList()" :key="project">
-            <p>{{ project }}</p>
-            </div>
-          </ul>
-          <div class="item error" v-if="input&&!filteredList().length">
-          <p>No results found!</p>
-          </div>
+          <v-autocomplete :items="filteredList()" placeholder="Search projects..." class="searchbar" v-model="input" :flat="true" menu-icon="mdi-magnify" padding-top="13px" width="60" >
+            <template v-slot:no-data><div id="error" >No results found!</div></template>
+          </v-autocomplete>
           
   
 
           <v-menu min-width="200px" rounded >
             <template v-slot:activator="{ props }">
               <v-btn icon="mdi-dots-vertical" variant="text" v-bind="props">
-              <v-avatar color="white" size="large"> <span class="text-h5" color="#c4443b">J</span> </v-avatar>
+              <v-avatar color="white" size="large"> <span class="text-h5" color="#c4443b">{{ user.name.charAt(0) }}</span> </v-avatar>
                 </v-btn>
             </template>
             <v-card>
-                <v-card-text>
+                <v-card-text background-color=#F5DBCB>
                     <div class="mx-auto text-center">
                         <v-avatar color="#c4443b" > <span class="text-h5">H</span> </v-avatar>
-                        <h3>name</h3>
-                        <p class="text-caption mt-1"> email </p>
+                        <h3>{{ user.name }}</h3>
+                        <p class="text-caption mt-1"> {{ user.email }} </p>
                         <v-divider class="my-3"></v-divider>
-                        <p>lang     en</p>
+                        <p>lang    en</p>
                         <v-divider class="my-3"></v-divider>
                         <v-btn variant="text" rounded @click="logout"> Logout </v-btn>
                     </div>
@@ -118,8 +108,8 @@ input {
   font-size: 16px;
   border: none;
   border-radius: 5px;
-  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
-    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  /* box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, */
+    /* rgba(0, 0, 0, 0.3) 0px 1px 3px -1px; */
 }
 
 .item {
@@ -136,16 +126,19 @@ input {
   cursor: pointer;
 }
 
-.error {
-  background-color: tomato;
+#error {
+  color: rgb(231, 48, 15);
 }
 
 #logo{
   height: 77px;
-  width:320px;
+  width:350px;
 }
 
 .searchbar{
-  background-color: white;
+  background-color: 0;
+}
+.notranslate {
+  transform: none!important;
 }
 </style>

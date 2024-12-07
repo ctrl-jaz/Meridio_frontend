@@ -9,7 +9,7 @@
                 <v-spacer></v-spacer>
             </v-col>
             <v-col>
-                <img src ="/photo_1_Meridio.jpg" id="img" contain height=100px width=182px>
+                <img src ="/photo_1_Meridio.jpg" id="img" height=200px width=182px>
                 <v-spacer></v-spacer>
             </v-col>
             <v-col>
@@ -24,8 +24,5 @@
 <style>
 #about{
     background-color: #F5DBCB}
-    img{
-        height: 17cm;
-        width: 15cm;
-    }
+
 </style>
