@@ -70,18 +70,27 @@
   
                   <v-col cols="12" xs="2" md="4">
                     <v-card ref="form" rounded="xl" width="600" height="630">
+                      <v-form>
           <v-card-text align="center">
-            <v-text-field v-model="Name" max-height="200" density="compact" placeholder="Name/Organization Name" rounded="xl" required></v-text-field>
-            <v-text-field type="email" v-model="email" density="compact" placeholder="youremail@example.com" rounded="xl" :rules="emailRules" required ></v-text-field>
-            <v-text-field  v-model="country" density="compact" placeholder="Norway" rounded="xl" required ></v-text-field>
-            <v-text-field type="tel" v-model="phone_number" density="compact" placeholder="000000000" rounded="xl" required ></v-text-field>
+            <v-text-field v-model="register_info.Name" max-height="200" placeholder="Name/Organization Name" rounded="xl"></v-text-field>
+            <v-text-field type="email" v-model="register_info.email" placeholder="youremail@example.com" rounded="xl" :rules="emailRules"></v-text-field>
+            <v-text-field v-model="register_info.country" placeholder="Country" rounded="xl"></v-text-field>
+            <v-text-field type="tel" v-model="register_info.phone_number" placeholder="000000000" rounded="xl" required ></v-text-field>
             <v-text-field
-            v-model="password"
+            v-model="register_info.password"
             :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
             :type="visible ? 'text' : 'password'"
             @click:append-inner="visible = !visible"
             rounded="xl"
-             density="compact"
+            label="password"
+            ></v-text-field>
+            <v-text-field
+            v-model="register_info.confirmpassword"
+            label="password"
+            :append-inner-icon="visible ? 'mdi-eye-off' : 'mdi-eye'"
+            :type="visible ? 'text' : 'password'"
+            @click:append-inner="visible = !visible"
+            rounded="xl"
             required
             ></v-text-field>
           </v-card-text>
@@ -92,6 +101,7 @@
                           Login <v-icon icon="mdi-chevron-right"></v-icon>
                         </a>
                       </v-card-text>
+                    </v-form>
                     </v-card>
                   </v-col>
                 </v-row>
@@ -114,10 +124,12 @@
   const visible = ref(false)
    const message = ref(null)
   const register_info = ref({
-    name:null,
+    Name:null,
     email:null,
+    country:null,
     phone_number:null,
     password: null,
+    confirmpassword: null
   })
   
   function register(){

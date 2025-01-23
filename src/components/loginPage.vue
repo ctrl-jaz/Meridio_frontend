@@ -87,9 +87,10 @@ const login_info = ref({
 })
 
 function login(){
-  console.log(login_info.value)
+   console.log(login_info.value);
+
   axios
-    .post('http://127.0.0.1:8000/api/login', login_info.value)
+    .post("http://127.0.0.1:8000/api/login", login_info.value)
     .then((response) => {
       // store token to be used through out the application
      userStore.login(response.data)
@@ -100,6 +101,32 @@ function login(){
       message.value = error.response.data.message
     })
 }
+// const login = async () => {
+//   try{
+//    console.log(login_info.value);
+//     const response = await axios.post("http://127.0.0.1:8000/api", login_info.value);
+//     userStore.login(response.data)
+//     console.log(response);
+//     router.push({ name:   "home" })
+// } catch (error) {
+//   console.error(error);
+//   message.value = error.response.data.message
+
+// }
+// };
+// function login(){
+//     axios
+//       .post('http://127.0.0.1:8000/api/login', login_info.value)
+      // .then((response) => {
+      //   // store token to be used through out the application  
+      //   userStore.register(response.data)
+      //   //redirect to home
+      //   router.push({ name:   "home" })
+      // }).catch(error => {
+      //   message.value = error.response.data.message
+      // })
+  // }
+
 </script>
 
 <style>

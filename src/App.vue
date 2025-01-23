@@ -1,5 +1,5 @@
 <script setup>
-// import { /*RouterLink*/ RouterView } from 'vue-router'
+import { /*RouterLink*/ RouterView } from 'vue-router'
 import Navbar from '../src/components/NavBar.vue'
 import FooterBar from './components/footerBar.vue';
 </script>
@@ -7,9 +7,9 @@ import FooterBar from './components/footerBar.vue';
 <template>
   <v-app>
     <Navbar v-if="!['login', 'register', 'Forgot Password'].includes($route.name)"/>
-    <!-- <v-main>
+    <v-main>
       <router-view></router-view>
-    </v-main> -->
+    </v-main>
     <FooterBar  v-if="!['login', 'register', 'Forgot Password'].includes($route.name)"/>
   </v-app>
 
